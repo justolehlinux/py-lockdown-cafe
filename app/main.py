@@ -6,6 +6,7 @@ from app.errors import (
 
 
 def go_to_cafe(friends: list[dict], cafe: Cafe) -> str:
+    # Solved
     masks_to_wear = 0
 
     for visitor in friends:
