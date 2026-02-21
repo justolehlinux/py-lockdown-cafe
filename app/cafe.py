@@ -4,13 +4,6 @@ from app.errors import NotVaccinatedError, \
 import datetime
 
 
-def check_exception_date(expiration_date: datetime.date) -> bool:
-
-    current_date = datetime.date.today()
-
-    return expiration_date < current_date
-
-
 class Cafe:
     def __init__(self, name: str) -> None:
         self.name = name
@@ -21,7 +14,7 @@ class Cafe:
             raise NotVaccinatedError(
                 "You must be vaccinated to enter the cafe.")
 
-        if check_exception_date(visitor["vaccine"]["expiration_date"]):
+        if visitor["vaccine"]["expiration_date"] < datetime.date.today():
             raise OutdatedVaccineError("Your vaccine is outdated.")
 
         if not visitor["wearing_a_mask"]:
